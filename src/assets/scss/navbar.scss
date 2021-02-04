@@ -1,0 +1,47 @@
+@import "variables";
+
+
+.navbar{
+    border-bottom: 2px solid lightgray;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 1rem;
+
+    @include tablet{
+        padding: 0 3rem;
+    }
+
+    @include desktop{
+        padding: 0 12rem;
+    }
+    
+    &-group{
+
+        display: flex;
+        align-items: center;
+    }
+
+    &-item{
+        margin: 1rem;
+
+        * {
+            display: inline-block !important;
+        }
+    }
+
+    &-image{
+        display: block;
+        height: 2rem;
+        width: 2rem;
+    }
+
+    &-title{
+        font-weight: 500;
+    }
+
+    &-link{
+        text-decoration: none;
+    }
+}

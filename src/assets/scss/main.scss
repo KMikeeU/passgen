@@ -1,0 +1,50 @@
+@import "variables";
+
+@import "navbar";
+@import "text";
+@import "generator";
+@import "about";
+@import "footer";
+
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.button{
+    background-color: $primary;
+    color: white;
+    padding: 1rem;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+
+    &.button-fluid{
+        width: 100%;
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+
+.arrow{
+    display: inline-block;
+    border-left: 2px solid $dark;
+    border-bottom: 2px solid $dark;
+    width: 1rem;
+    height: 1rem;
+
+    margin-left: 1rem;
+
+    &-down{
+        transform: rotate(-45deg);
+    }
+}

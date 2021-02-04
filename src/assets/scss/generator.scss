@@ -1,0 +1,60 @@
+@import "variables";
+
+.generator{
+    margin: 3rem 3rem;
+    display: block;
+
+    @include tablet{
+        margin: 3rem 8rem;
+    }
+    
+    @include desktop{
+        margin: 3rem 16rem;
+    }
+
+
+    &-options{
+        display: grid;
+        grid-template-rows: auto;
+        
+        
+        @include tablet{
+            grid-template-columns: auto auto;
+            
+            &>*:nth-child(even){
+                margin-left: 1rem;
+            }
+        }
+
+        @include desktop{
+            grid-template-columns: auto auto auto;
+            
+            &>*{
+                margin-left: 1rem;
+            }
+        }
+
+    }
+    
+    input{
+        &[type="number"], &[type="text"]{
+            padding: 0.5rem;
+            width: 100%;
+        }
+        display: block;
+        margin-bottom: 1rem;
+
+        font-family: "Roboto Mono", monospace;
+    }
+
+    &-output{
+        background-color: $white;
+        font-family: "Roboto Mono", monospace;
+        padding: 1rem 2rem;
+        overflow-x: auto;
+
+        span{
+            font-family: inherit;
+        }
+    }
+}

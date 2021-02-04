@@ -1,0 +1,14 @@
+@import "variables";
+
+.about{
+    margin: 3rem 3rem;
+    display: block;
+
+    @include tablet{
+        margin: 3rem 8rem;
+    }
+    
+    @include desktop{
+        margin: 3rem 16rem;
+    }
+}
