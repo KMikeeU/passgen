@@ -61,6 +61,17 @@
                 <input v-model="options.seperator.random" type="text">
             </div>
         </div>
+        <h3 class="text-link text-noselect" v-on:click="toggleHidden($event)">Char insertion settings <span class="arrow arrow-down"></span></h3>
+        <div class="generator-options hidden">
+            <div class="generator-option">
+                <label>Insertion chars</label>
+                <input v-model="options.insertion.insertionChars" type="text">
+            </div>
+            <div class="generator-option">
+                <label>Insertion count</label>
+                <input v-model="options.insertion.count" type="number">
+            </div>
+        </div>
 
         <a class="button button-fluid" v-on:click="generateMany(3)">Regenerate</a>
         <p class="generator-output" v-for="output in outputs" v-bind:key="output">
@@ -103,6 +114,10 @@
                         left: 2,
                         right: 0,
                         random: true
+                    },
+                    insertion: {
+                        insertionChars: "!@#$%^&*():{;['/?.><,",
+                        count: 1
                     }
                 },
                 outputs: [],
@@ -126,7 +141,6 @@
                 
                 if(elem.nodeName == "SPAN"){
                     elem = elem.parentNode
-                    console.log(elem)
                 }
                 
                 elem = elem.nextSibling

@@ -28,7 +28,7 @@ const generate = (wordList, options = {}) => {
             random: false
         },
         charPadding: {
-            paddingChars: "!?-:;.,_",
+            paddingChars: "!?-:;.,_[]{}'@#$%*&",
             left: 0,
             right: 2,
             random: true
@@ -38,6 +38,10 @@ const generate = (wordList, options = {}) => {
             left: 2,
             right: 0,
             random: true
+        },
+        insertion: {
+            insertionChars: "!@#$%^&*():{;['/?.><,",
+            count: 1
         }
     }
 
@@ -48,6 +52,8 @@ const generate = (wordList, options = {}) => {
     defaultOptions.seperator.seperatorChars = defaultOptions.seperator.seperatorChars.split("")
     defaultOptions.charPadding.paddingChars = defaultOptions.charPadding.paddingChars.split("")
     defaultOptions.numPadding.paddingChars = defaultOptions.numPadding.paddingChars.split("")
+    defaultOptions.insertion.insertionChars = defaultOptions.insertion.insertionChars.split("")
+
 
     // Filter out words with invalid length
     wordList = wordList.filter(word => word.length >= defaultOptions.words.minLen && word.length <= defaultOptions.words.maxLen)
@@ -55,24 +61,6 @@ const generate = (wordList, options = {}) => {
     
     // Start generation
     let password = "";
-
-    let charPaddingChar = defaultOptions.charPadding.paddingChars.random()
-    for(let i = 0; i < defaultOptions.charPadding.left; i++){
-        password += charPaddingChar
-
-        if(defaultOptions.charPadding.random){
-            charPaddingChar = defaultOptions.charPadding.paddingChars.random()
-        }
-    }
-    
-    let numPaddingChar = defaultOptions.numPadding.paddingChars.random()
-    for(let i = 0; i < defaultOptions.numPadding.left; i++){
-        password += numPaddingChar
-
-        if(defaultOptions.charPadding.random){
-            numPaddingChar = defaultOptions.numPadding.paddingChars.random()
-        }
-    }
     
     let seperatorChar = defaultOptions.seperator.seperatorChars.random()
     let randomCaps = 0;
@@ -91,6 +79,33 @@ const generate = (wordList, options = {}) => {
         }
     }
     password += seperatorChar;
+    
+    for (let i = 0; i < defaultOptions.insertion.count; i++) {
+        let index = Math.floor(Math.random() * password.length);
+
+        password = password.substring(0, index) + defaultOptions.insertion.insertionChars.random() + password.substring(index, password.length);
+    }
+
+
+
+    // Do padding after insertion so that insertion doesnt interfere with padding
+    let charPaddingChar = defaultOptions.charPadding.paddingChars.random()
+    for(let i = 0; i < defaultOptions.charPadding.left; i++){
+        password = charPaddingChar + password
+
+        if(defaultOptions.charPadding.random){
+            charPaddingChar = defaultOptions.charPadding.paddingChars.random()
+        }
+    }
+    
+    let numPaddingChar = defaultOptions.numPadding.paddingChars.random()
+    for(let i = 0; i < defaultOptions.numPadding.left; i++){
+        password = numPaddingChar + password
+
+        if(defaultOptions.charPadding.random){
+            numPaddingChar = defaultOptions.numPadding.paddingChars.random()
+        }
+    }
 
     
     numPaddingChar = defaultOptions.numPadding.paddingChars.random()
