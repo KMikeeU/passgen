@@ -1,6 +1,9 @@
 # passgen
 Simple client-side password generator with vuejs
 
+## Demo
+A live demo of this project can be found on my website [here](https://passwords.mikee.dev).
+
 ## Project setup
 ```
 npm install
